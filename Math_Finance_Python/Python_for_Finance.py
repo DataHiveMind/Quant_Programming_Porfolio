@@ -22,7 +22,7 @@ def VCouponVal(c,i,n):
         i += 1
         print(i)
     print("Coupon Payment: ", ans)
-    
+
 def Exp_and_Log():
     x = np.linspace(-1, 2, 200)
     y = np.exp(x) # Model build
@@ -31,22 +31,22 @@ def Exp_and_Log():
     plt.xlabel("x")
     plt.ylabel("y = f(x)")
     plt.show()
-    
-def Log_Normal(): 
+
+def Log_Normal():
     stddev = 0.0
     mean = 0.4
     dist = log([stddev], loc = mean)
-    
+
     x = np.linspace(0, 6, 200)
     pl.plot(x, dist.pdf(x))
     pl.plot(x, dist.cdf(x))
-    
+
     mu, sigma = 3, 1 # mean and std deviation
     s = np.random.log(mu, sigma, 1000)
     count, bins, ignored = plt.hist(s, 100, denisty = True, align = "mid")
     x = np.linspace(min(bins), max(bins), 10000)
     pdf = (np.exp(-(np.log(x) - mu)**2)/2*sigma**2)/(x*sigma*np.sqrt(2*np.pi))
-    
+
     plt.plot(x, pdf, linewidth = 2, color = 'r')
     plt.axis('tight')
     plt.show()
@@ -56,7 +56,7 @@ def Options():
     optype = input("Rnter the option type (C/P): ")
     k = int(input("Enter the exercise price: "))
     s = int(input("Enter the stock price: "))
-    
+
     if optype == "C":
         payoff = max(0, (s-k)) # Make Money when Stock goes Up
     elif optype == "P":
@@ -64,7 +64,7 @@ def Options():
     print("Payoff is: ", payoff)
 
 def BS_CALL(S, K, T, R, sigma):
-    # Stock price(S), Strike price(K), 
+    # Stock price(S), Strike price(K),
     # Risk free rate(R), Volatility(sigma), Time left til maturity(T)
     N = norm.cdf
     d1 = np.log(S/K) + (R + sigma**2/2)*T / (sigma * np.sqrt(T))
@@ -72,7 +72,7 @@ def BS_CALL(S, K, T, R, sigma):
     return S-N(d1) - K * np.exp(-R * T)* N(d2)
 
 def BS_PUT(S, K, T, R, sigma):
-    # Stock price(S), Strike price(K), 
+    # Stock price(S), Strike price(K),
     # Risk free rate(R), Volatility(sigma), Time left til maturity(T)
     N = norm.cdf
     d1 = np.log(S/K) + (R + sigma**2/2)*T / (sigma * np.sqrt(T))
